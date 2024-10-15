@@ -83,12 +83,13 @@ class Pyramid
         {
             static $start = 1;
             static $end = count($this->lines);
+            static $maxLen = strlen(implode('',$this->lines[$end-1]));
 
             $leftBlock = implode('',array_reverse($line));
             $rightBlock = substr(implode('',$line), 1);   
 
             $this->result[$start]['string'] = $leftBlock.$rightBlock;
-            $this->result[$end]['left_padding'] = strlen($leftBlock) -1;
+            $this->result[$start]['left_padding'] =  $maxLen - strlen($leftBlock);
 
             $start++;
             $end--;
